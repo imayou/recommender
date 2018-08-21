@@ -5,160 +5,105 @@
     <title>推荐系统</title>
     <script type="text/javascript" src="http://echarts.baidu.com/examples/vendors/jquery/jquery.js"></script>
     <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
-    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
-    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
-    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
-    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
-    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
-    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
-    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
 </head>
-<body style="height: 100%; margin: 0;width:50%">
-	<div id="container" style="height: 100%"></div>
+<body style="height: 100%">
+	<div id="container" style="height: 100% ; margin: 0;width:50%"></div>
+	<div id="container1" style="height: 100% ; margin: 0;width:50%">
+	</div>
 	<script type="text/javascript">
 		var dom = document.getElementById("container");
 		var myChart = echarts.init(dom);
 		var app = {};
 		option = null;
 		option = {
-			    title: {
-			        text: '自定义雷达图'
-			    },
-			    legend: {
-			        data: ['图一','图二', '张三', '李四']
-			    },
-			    radar: [
-			        {
-			            indicator: [
-			                { text: '指标一' },
-			                { text: '指标二' },
-			                { text: '指标三' },
-			                { text: '指标四' },
-			                { text: '指标五' }
-			            ],
-			            center: ['25%', '50%'],
-			            radius: 120,
-			            startAngle: 90,
-			            splitNumber: 4,
-			            shape: 'circle',
-			            name: {
-			                formatter:'【{value}】',
-			                textStyle: {
-			                    color:'#72ACD1'
-			                }
-			            },
-			            splitArea: {
-			                areaStyle: {
-			                    color: ['rgba(114, 172, 209, 0.2)',
-			                    'rgba(114, 172, 209, 0.4)', 'rgba(114, 172, 209, 0.6)',
-			                    'rgba(114, 172, 209, 0.8)', 'rgba(114, 172, 209, 1)'],
-			                    shadowColor: 'rgba(0, 0, 0, 0.3)',
-			                    shadowBlur: 10
-			                }
-			            },
-			            axisLine: {
-			                lineStyle: {
-			                    color: 'rgba(255, 255, 255, 0.5)'
-			                }
-			            },
-			            splitLine: {
-			                lineStyle: {
-			                    color: 'rgba(255, 255, 255, 0.5)'
-			                }
-			            }
-			        },
-			        {
-			            indicator: [
-			                { text: '语文', max: 150 },
-			                { text: '数学', max: 150 },
-			                { text: '英语', max: 150 },
-			                { text: '物理', max: 120 },
-			                { text: '化学', max: 108 },
-			                { text: '生物', max: 72 }
-			            ],
-			            center: ['75%', '50%'],
-			            radius: 120
-			        }
-			    ],
-			    series: [
-			        {
-			            name: '雷达图',
-			            type: 'radar',
-			            itemStyle: {
-			                emphasis: {
-			                    // color: 各异,
-			                    lineStyle: {
-			                        width: 4
-			                    }
-			                }
-			            },
-			            data: [
-			                {
-			                    value: [100, 8, 0.40, -80, 2000],
-			                    name: '图一',
-			                    symbol: 'rect',
-			                    symbolSize: 5,
-			                    lineStyle: {
-			                        normal: {
-			                            type: 'dashed'
-			                        }
-			                    }
-			                },
-			                {
-			                    value: [60, 5, 0.30, -100, 1500],
-			                    name: '图二',
-			                    areaStyle: {
-			                        normal: {
-			                            color: 'rgba(255, 255, 255, 0.5)'
-			                        }
-			                    }
-			                }
-			            ]
-			        },
-			        {
-			            name: '成绩单',
-			            type: 'radar',
-			            radarIndex: 1,
-			            data: [
-			                {
-			                    value: [120, 118, 130, 100, 99, 70],
-			                    name: '张三',
-			                    label: {
-			                        normal: {
-			                            show: true,
-			                            formatter:function(params) {
-			                                return params.value;
-			                            }
-			                        }
-			                    }
-			                },
-			                {
-			                    value: [90, 113, 140, 30, 70, 60],
-			                    name: '李四',
-			                    areaStyle: {
-			                        normal: {
-			                            opacity: 0.9,
-			                            color: new echarts.graphic.RadialGradient(0.5, 0.5, 1, [
-			                                {
-			                                    color: '#B8D3E4',
-			                                    offset: 0
-			                                },
-			                                {
-			                                    color: '#72ACD1',
-			                                    offset: 1
-			                                }
-			                            ])
-			                        }
-			                    }
-			                }
-			            ]
-			        }
-			    ]
-			}
+		    title: {
+		        text: '基础雷达图'
+		    },
+		    tooltip: {},
+		    legend: {
+		        data: ['整体', '个人']
+		    },
+		    radar: {
+		        // shape: 'circle',
+		        name: {
+		            textStyle: {
+		                color: '#fff',
+		                backgroundColor: '#999',
+		                borderRadius: 3,
+		                padding: [3, 5]
+		           }
+		        },
+		        indicator: [
+		           { name: '01(交强险)', max: 700000},
+		           { name: '01(车辆损失险)', max: 700000},
+		           { name: '02(第三者责任险)', max: 700000},
+		           { name: '15(第三者责任险不计免赔)', max: 700000},
+		           { name: '14(车损不计免赔)', max: 700000},
+		           { name: '03(车上人员责任险(司机))', max: 700000},
+		           { name: '16(人员不计免赔（司机)	)', max: 700000},
+		           { name: '04(车上人员责任险(乘客))', max: 700000},
+		           { name: '17(人员不计免赔（乘客)	)', max: 700000},
+		           { name: '24(机动车损失保险无法找到第三方特约险)', max: 700000},
+		           { name: '05(全车盗抢险)', max: 700000},
+		           { name: '18(盗抢不计免赔)', max: 700000},
+		           { name: '06(玻璃单独破碎险)', max: 700000},
+		           { name: '07(自燃损失险)', max: 700000},
+		           { name: '22(指定修理厂险)', max: 700000},
+		           { name: '19(自燃损失险不计免赔)	', max: 700000},
+		           { name: '13(车身划痕损失险)', max: 700000},
+		           { name: '23(车身划痕损失险不计免赔)	', max: 700000},
+		           { name: '12(发动机涉水损失险)', max: 700000},
+		           { name: '25(发动机涉水损失险不计免赔)', max: 700000},
+		           { name: '38(机动车第三者责任保险附加法定节假日限额翻倍险)', max: 700000},
+		           { name: '08(新增设备损失险)', max: 700000},
+		           { name: '33(新增设备损失险不计免赔)	', max: 700000},
+		           { name: '11(精神损害抚慰金责任险)', max: 700000},
+		           { name: '20(精神损害抚慰金责任险不计免赔)', max: 700000},
+		           { name: '34(机动车钥匙丢失或损坏费用补偿险)', max: 700000},
+		           { name: '09(修理期间费用补偿险)	', max: 700000},
+		           { name: '10(新增设备损失险)', max: 700000},
+		           { name: '21(车上货物责任险不计免赔)	', max: 700000},
+		           { name: '001(车辆损失险(IACJQL0001))', max: 700000},
+		           { name: '26(起重、装卸、挖掘车辆损失扩展条款)', max: 700000},
+		           { name: '37(机动车油污责任险)', max: 700000},
+		           { name: '27(特种车辆固定设备、仪器损坏扩展条款)', max: 700000},
+		        ]
+		    },
+		    series : [ {
+				name : '预算 vs 开销（Budget vs spending）',
+				type : 'radar',
+				// areaStyle: {normal: {}},
+				data : [{
+					value : [ 529320,612489,593255, 590016, 525174, 338456, 337151, 324431, 323236,
+						252812, 237331, 232915, 79568, 55759, 50096, 41409, 40247,
+						37209, 20747, 14778, 1340, 1081, 1042, 628, 600, 296, 97,
+						83, 81, 19, 12, 3, 2 ],
+					name : '个人',
+					areaStyle : {
+						normal : {
+							opacity : 0.5,
+							color : new echarts.graphic.RadialGradient(0.5,0.5, 1, [{color : '#EFF',offset : 0}, {color : 'red',offset : 1}])
+						}
+					}
+				}]
+			} ]
+		};
+		var v = {
+			value : [529320, 612489,593255, 590016, 525174, 338456, 337151, 324431, 323236,
+					252812, 237331, 232915, 79568, 55759, 50096, 41409, 40247,
+					37209, 20747, 14778, 1340, 1081, 1042, 628, 600, 296, 97,
+					83, 81, 19, 12, 3, 2 ],
+			name : '整体'
+		};
+		option.series[0].data.push(v);
+		
 		if (option && typeof option === "object") {
 		    myChart.setOption(option, true);
 		};
        </script>
+   
+      1139773
+
+      
 </body>
 </html>
