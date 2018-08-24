@@ -1,12 +1,12 @@
-package com.ifa.recommender.test.recommender;
+package com.ifa.recommender.recommender;
 
 import java.util.Arrays;
 import java.util.TreeSet;
 
-import com.ifa.recommender.test.Similar.Jaccard;
-import com.ifa.recommender.test.Similar.Similarity;
-import com.ifa.recommender.test.util.ArrayUtil;
-import com.ifa.recommender.test.util.StringUtil;
+import com.ifa.recommender.Similar.Jaccard;
+import com.ifa.recommender.Similar.Similarity;
+import com.ifa.recommender.util.ArrayUtil;
+import com.ifa.recommender.util.StringUtil;
 
 /**
  * Created by root on 3/28/17.

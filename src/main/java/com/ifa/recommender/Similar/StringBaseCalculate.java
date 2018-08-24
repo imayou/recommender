@@ -1,4 +1,4 @@
-package com.ifa.recommender.test.Similar;
+package com.ifa.recommender.Similar;
 
 import java.util.HashMap;
 import java.util.Map;

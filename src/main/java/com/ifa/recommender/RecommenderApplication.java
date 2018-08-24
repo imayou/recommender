@@ -1,4 +1,4 @@
-package com.ifa.recommender.recommender;
+package com.ifa.recommender;
 
 import org.springframework.boot.SpringApplication;
 
