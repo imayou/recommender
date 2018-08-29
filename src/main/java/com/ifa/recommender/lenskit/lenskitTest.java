@@ -39,9 +39,9 @@ public class lenskitTest {
 		
 		//config.bind(EventDAO.class).to(new SimpleFileRatingDAO(new File("C:\\Users\\AYOU\\Desktop\\ratings.csv"), ","));
 		
-		//config.bind(EventDAO.class).to(TextEventDAO.ratings(new File("C:\\Users\\AYOU\\Desktop\\p-p.csv"), ","));
+		config.bind(EventDAO.class).to(TextEventDAO.ratings(new File("C:\\Users\\AYOU\\Desktop\\p-p.csv"), ","));
 		
-		config.bind(EventDAO.class).to(TextEventDAO.ratings(new File("F:\\12.csv"), ""));
+		//config.bind(EventDAO.class).to(TextEventDAO.ratings(new File("F:\\12.csv"), ""));
 		
 		LenskitRecommender rec = null;
 		try {

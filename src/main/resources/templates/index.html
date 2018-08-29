@@ -7,103 +7,106 @@
     <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
 </head>
 <body style="height: 100%">
+	车辆性质
+	<select id="vtype" name="vtype">
+		<option title="请选择" value="" data-index="0">请选择</option>
+		<option title="家庭自用车" value="309001-359002" data-index="1">家庭自用车</option>
+		<option title="机关、事业单位用车" value="309002-359002" data-index="2">机关、事业单位用车</option>
+		<option title="企业非营业车" value="309004-359002" data-index="3">企业非营业车</option>
+		<option title="营业特种车" value="309005-359001" data-index="4">营业特种车</option>
+		<option title="非营业特种车" value="309005-359002" data-index="5">非营业特种车</option>
+		<option title="摩托车" value="309008-359002" data-index="6">摩托车</option>
+		<option title="拖拉机" value="309009-359002" data-index="7">拖拉机</option>
+		<option title="城市公交营业客车" value="309012-359001" data-index="8">城市公交营业客车</option>
+		<option title="非营业货车" value="309014-359002" data-index="9">非营业货车</option>
+		<option title="营业货车" value="309015-359001" data-index="10">营业货车</option>
+		<option title="出租、租赁" value="309016-359001" data-index="11">出租、租赁</option>
+		<option title="公路营运" value="309017-359001" data-index="12">公路营运</option>
+		<option title="非营业挂车" value="309035-359002" data-index="13">非营业挂车</option>
+		<option title="营业挂车" value="309036-359001" data-index="14">营业挂车</option>
+		<option title="营业特种车挂车" value="309041-359001" data-index="15">营业特种车挂车</option>
+		<option title="非营业特种车挂车" value="309041-359002" data-index="16">非营业特种车挂车</option>
+	</select>
+	车主性质
+	<select id="vtype2" name="vtype" >
+		<option title="个人" value="1" data-index="0" selected="selected">个人</option>
+		<option title="企业" value="3" data-index="1">企业</option>
+		<option title="机关" value="2" data-index="2">机关</option>
+	</select>
+	年龄<input id="age" type="text"/>
+	车龄<input id="year" type="text"/>
+	地址<input id="address" type="text"/>
+	<input type="button" onclick="r()" value="推荐"/>
 	<div id="container" style="height: 100% ; margin: 0;width:50%"></div>
-	<div id="container1" style="height: 100% ; margin: 0;width:50%">
-	</div>
 	<script type="text/javascript">
 		var dom = document.getElementById("container");
 		var myChart = echarts.init(dom);
 		var app = {};
 		option = null;
 		option = {
-		    title: {
-		        text: '基础雷达图'
-		    },
-		    tooltip: {},
-		    legend: {
-		        data: ['整体', '个人']
-		    },
-		    radar: {
-		        // shape: 'circle',
-		        name: {
-		            textStyle: {
-		                color: '#fff',
-		                backgroundColor: '#999',
-		                borderRadius: 3,
-		                padding: [3, 5]
-		           }
-		        },
-		        indicator: [
-		           { name: '01(交强险)', max: 700000},
-		           { name: '01(车辆损失险)', max: 700000},
-		           { name: '02(第三者责任险)', max: 700000},
-		           { name: '15(第三者责任险不计免赔)', max: 700000},
-		           { name: '14(车损不计免赔)', max: 700000},
-		           { name: '03(车上人员责任险(司机))', max: 700000},
-		           { name: '16(人员不计免赔（司机)	)', max: 700000},
-		           { name: '04(车上人员责任险(乘客))', max: 700000},
-		           { name: '17(人员不计免赔（乘客)	)', max: 700000},
-		           { name: '24(机动车损失保险无法找到第三方特约险)', max: 700000},
-		           { name: '05(全车盗抢险)', max: 700000},
-		           { name: '18(盗抢不计免赔)', max: 700000},
-		           { name: '06(玻璃单独破碎险)', max: 700000},
-		           { name: '07(自燃损失险)', max: 700000},
-		           { name: '22(指定修理厂险)', max: 700000},
-		           { name: '19(自燃损失险不计免赔)	', max: 700000},
-		           { name: '13(车身划痕损失险)', max: 700000},
-		           { name: '23(车身划痕损失险不计免赔)	', max: 700000},
-		           { name: '12(发动机涉水损失险)', max: 700000},
-		           { name: '25(发动机涉水损失险不计免赔)', max: 700000},
-		           { name: '38(机动车第三者责任保险附加法定节假日限额翻倍险)', max: 700000},
-		           { name: '08(新增设备损失险)', max: 700000},
-		           { name: '33(新增设备损失险不计免赔)	', max: 700000},
-		           { name: '11(精神损害抚慰金责任险)', max: 700000},
-		           { name: '20(精神损害抚慰金责任险不计免赔)', max: 700000},
-		           { name: '34(机动车钥匙丢失或损坏费用补偿险)', max: 700000},
-		           { name: '09(修理期间费用补偿险)	', max: 700000},
-		           { name: '10(新增设备损失险)', max: 700000},
-		           { name: '21(车上货物责任险不计免赔)	', max: 700000},
-		           { name: '001(车辆损失险(IACJQL0001))', max: 700000},
-		           { name: '26(起重、装卸、挖掘车辆损失扩展条款)', max: 700000},
-		           { name: '37(机动车油污责任险)', max: 700000},
-		           { name: '27(特种车辆固定设备、仪器损坏扩展条款)', max: 700000},
-		        ]
-		    },
-		    series : [ {
-				name : '预算 vs 开销（Budget vs spending）',
-				type : 'radar',
-				// areaStyle: {normal: {}},
-				data : [{
-					value : [ 529320,612489,593255, 590016, 525174, 338456, 337151, 324431, 323236,
-						252812, 237331, 232915, 79568, 55759, 50096, 41409, 40247,
-						37209, 20747, 14778, 1340, 1081, 1042, 628, 600, 296, 97,
-						83, 81, 19, 12, 3, 2 ],
-					name : '个人',
-					areaStyle : {
-						normal : {
-							opacity : 0.5,
-							color : new echarts.graphic.RadialGradient(0.5,0.5, 1, [{color : '#EFF',offset : 0}, {color : 'red',offset : 1}])
-						}
-					}
-				}]
-			} ]
+	    title: {text: '基础雷达图'},
+	    tooltip: {},
+	    legend: {
+	        data: ['实际开销（Actual Spending）']
+	    },
+	    radar: {
+	        // shape: 'circle',
+	        name: {
+	            textStyle: {
+	                color: '#fff',
+	                backgroundColor: '#999',
+	                borderRadius: 3,
+	                padding: [3, 5]
+	           }
+	        },
+	        indicator: [
+	           { name: '意外', max: 5},
+	           { name: '家财', max: 5},
+	           { name: '车服', max: 5},
+	           { name: '重疾', max: 5},
+	           { name: '责任', max: 5},
+	        ]
+	    },
+	    series: [{
+	        name: '预算 vs 开销（Budget vs spending）',
+	        type: 'radar',
+	        areaStyle : {
+				normal : {
+					opacity : 0.5,
+					color : new echarts.graphic.RadialGradient(0.5,0.5, 1, [{color : '#EFF',offset : 0}, {color : 'blue',offset : 1}])
+				}
+			},
+	        data : [
+	            {
+	                value : [2, 1, 4, 3, 5],
+	                name : '预算分配（Allocated Budget）',
+	            }
+	        ]
+	    }]
 		};
-		var v = {
-			value : [529320, 612489,593255, 590016, 525174, 338456, 337151, 324431, 323236,
-					252812, 237331, 232915, 79568, 55759, 50096, 41409, 40247,
-					37209, 20747, 14778, 1340, 1081, 1042, 628, 600, 296, 97,
-					83, 81, 19, 12, 3, 2 ],
-			name : '整体'
-		};
-		option.series[0].data.push(v);
-		
+	
 		if (option && typeof option === "object") {
 		    myChart.setOption(option, true);
 		};
-       </script>
-   
-      1139773
-
-      
+		
+		function r(){
+			var pd = {
+				"vtype":$("#vtype").val(),
+				"vtype2":$("#vtype2").val(),
+				"age":$("#age").val(),
+				"year":$("#year").val(),
+				"address":$("#address").val(),
+			};
+			$.post("/r/give",pd , function(data) {
+				var arr = []
+				for (var i in data) {
+				    arr.push(data[i]);
+				}
+				option.series[0].data[0].value = arr;
+				myChart.setOption(option, true);
+			});
+		}
+	</script>
+	
 </body>
 </html>
