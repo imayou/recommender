@@ -3,48 +3,101 @@
 <head>
     <meta charset="utf-8">
     <title>推荐系统</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script type="text/javascript" src="http://echarts.baidu.com/examples/vendors/jquery/jquery.js"></script>
     <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
 </head>
 <body style="height: 100%">
-	车辆性质
-	<select id="vtype" name="vtype">
-		<option title="请选择" value="" data-index="0">请选择</option>
-		<option title="家庭自用车" value="309001-359002" data-index="1">家庭自用车</option>
-		<option title="机关、事业单位用车" value="309002-359002" data-index="2">机关、事业单位用车</option>
-		<option title="企业非营业车" value="309004-359002" data-index="3">企业非营业车</option>
-		<option title="营业特种车" value="309005-359001" data-index="4">营业特种车</option>
-		<option title="非营业特种车" value="309005-359002" data-index="5">非营业特种车</option>
-		<option title="摩托车" value="309008-359002" data-index="6">摩托车</option>
-		<option title="拖拉机" value="309009-359002" data-index="7">拖拉机</option>
-		<option title="城市公交营业客车" value="309012-359001" data-index="8">城市公交营业客车</option>
-		<option title="非营业货车" value="309014-359002" data-index="9">非营业货车</option>
-		<option title="营业货车" value="309015-359001" data-index="10">营业货车</option>
-		<option title="出租、租赁" value="309016-359001" data-index="11">出租、租赁</option>
-		<option title="公路营运" value="309017-359001" data-index="12">公路营运</option>
-		<option title="非营业挂车" value="309035-359002" data-index="13">非营业挂车</option>
-		<option title="营业挂车" value="309036-359001" data-index="14">营业挂车</option>
-		<option title="营业特种车挂车" value="309041-359001" data-index="15">营业特种车挂车</option>
-		<option title="非营业特种车挂车" value="309041-359002" data-index="16">非营业特种车挂车</option>
-	</select>
-	车主性质
-	<select id="vtype2" name="vtype" >
-		<option title="个人" value="1" data-index="0" selected="selected">个人</option>
-		<option title="企业" value="3" data-index="1">企业</option>
-		<option title="机关" value="2" data-index="2">机关</option>
-	</select>
-	年龄<input id="age" type="text"/>
-	车龄<input id="year" type="text"/>
-	地址<input id="address" type="text"/>
-	<input type="button" onclick="r()" value="推荐"/>
-	<div id="container" style="height: 100% ; margin: 0;width:50%"></div>
+	<div class="container">
+	    <header class="blog-header py-3">
+	    </header>
+		<div class="bg-dark jumbotron text-white">
+				<div class="needs-validation">
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="age">年龄</label> <input type="text" class="form-control" id="age" placeholder="" value="25" required="">
+							<div class="invalid-feedback">Valid last name is required.</div>
+						</div>
+						<div class="col-md-6 mb-3">
+							<label for="year">车龄</label> <input type="text" class="form-control" id="year" placeholder="" value="0" required="">
+							<div class="invalid-feedback">Valid first name is required.
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="country">车辆性质</label> 
+							<select class="custom-select d-block w-100" id="vtype" required="">
+								<option title="家庭自用车" value="309001-359002" data-index="1">家庭自用车</option>
+								<option title="机关、事业单位用车" value="309002-359002" data-index="2">机关、事业单位用车</option>
+								<option title="企业非营业车" value="309004-359002" data-index="3">企业非营业车</option>
+								<option title="营业特种车" value="309005-359001" data-index="4">营业特种车</option>
+								<option title="非营业特种车" value="309005-359002" data-index="5">非营业特种车</option>
+								<option title="摩托车" value="309008-359002" data-index="6">摩托车</option>
+								<option title="拖拉机" value="309009-359002" data-index="7">拖拉机</option>
+								<option title="城市公交营业客车" value="309012-359001" data-index="8">城市公交营业客车</option>
+								<option title="非营业货车" value="309014-359002" data-index="9">非营业货车</option>
+								<option title="营业货车" value="309015-359001" data-index="10">营业货车</option>
+								<option title="出租、租赁" value="309016-359001" data-index="11">出租、租赁</option>
+								<option title="公路营运" value="309017-359001" data-index="12">公路营运</option>
+								<option title="非营业挂车" value="309035-359002" data-index="13">非营业挂车</option>
+								<option title="营业挂车" value="309036-359001" data-index="14">营业挂车</option>
+								<option title="营业特种车挂车" value="309041-359001" data-index="15">营业特种车挂车</option>
+								<option title="非营业特种车挂车" value="309041-359002" data-index="16">非营业特种车挂车</option>
+							</select>
+							<div class="invalid-feedback">Please select a valid country. </div>
+						</div>
+						<div class="col-md-6 mb-3">
+							<label for="state">车主性质</label> 
+							<select class="custom-select d-block w-100" id="vtype2" required="">
+								<option title="个人" value="1" data-index="0" selected="selected">个人</option>
+								<option title="企业" value="3" data-index="1">企业</option>
+								<option title="机关" value="2" data-index="2">机关</option>
+							</select>
+							<div class="invalid-feedback">Please provide a valid state. </div>
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="address">地区</label> <input type="text" class="form-control" id="address" placeholder="可选" required="">
+						<div class="invalid-feedback">Please enter your shipping address.</div>
+					</div>
+					<div class="row">
+						<div style="width:100%;text-align: center;">
+							<button style="width:20%" class="btn btn-primary" onclick="r()" type="submit">推荐</button>
+						</div>
+					</div>
+			</div>
+			<hr class="mb-4">
+			<div class="row form-horizontal">
+				<div class="col-md-7">
+					<div id="container" style="height: 400px"></div>
+				</div>
+				<div class="col-md-5">
+					<ol class="list-unstyled mb-0" id="re">
+		              <li><a href="#">March 2014</a></li>
+		              <li><a href="#">February 2014</a></li>
+		              <li><a href="#">January 2014</a></li>
+		              <li><a href="#">December 2013</a></li>
+		              <li><a href="#">November 2013</a></li>
+		              <li><a href="#">October 2013</a></li>
+		              <li><a href="#">September 2013</a></li>
+		              <li><a href="#">August 2013</a></li>
+		              <li><a href="#">July 2013</a></li>
+		              <li><a href="#">June 2013</a></li>
+		              <li><a href="#">May 2013</a></li>
+		              <li><a href="#">April 2013</a></li>
+		            </ol>
+				</div>
+			</div>
+		</div>
+	</div>
 	<script type="text/javascript">
 		var dom = document.getElementById("container");
 		var myChart = echarts.init(dom);
 		var app = {};
 		option = null;
 		option = {
-	    title: {text: '基础雷达图'},
+	   // title: {text: '基础雷达图',color:'#000'},
 	    tooltip: {},
 	    legend: {
 	        data: ['实际开销（Actual Spending）']
@@ -91,22 +144,69 @@
 		
 		function r(){
 			var pd = {
-				"vtype":$("#vtype").val(),
-				"vtype2":$("#vtype2").val(),
+				"vtype":$("#vtype").find("option:selected").text(),
+				"vtype2":$("#vtype2").find("option:selected").text(),
 				"age":$("#age").val(),
 				"year":$("#year").val(),
 				"address":$("#address").val(),
 			};
 			$.post("/r/give",pd , function(data) {
+				console.log(data);
 				var arr = []
 				for (var i in data) {
 				    arr.push(data[i]);
 				}
 				option.series[0].data[0].value = arr;
 				myChart.setOption(option, true);
+				//$('#re').append("<li><a href='#'>家财</a></li>");
+				
+				/* for (var i = 0; i < data.length; i++) {
+					for(var j = 0;j<data.length-i-1;j++){
+						console.log(data[j]);
+						if(data[j]>data[j+1]){
+							var swap=data[j];
+							data[j]=data[j+i];
+							data[j+1]= swap;
+						}
+					}
+				} */
+				var sortedObjKeys = Object.keys(data).sort(function(a, b) {
+				    return data[b] - data[a];
+				});
+				//console.log(sortedObjKeys);
+				$('#re').html("");
+				for (var i = 0; i < sortedObjKeys.length; i++) {
+					//console.log(sortedObjKeys[i]+"--"+data[sortedObjKeys[i]]);
+					$('#re').append("<li><a href='#'>"+getv(sortedObjKeys[i])+"("+data[sortedObjKeys[i]]+")"+"</a></li>");
+					
+				}
 			});
+		};
+		function getv(key){
+			switch(key){
+				case 'jc':
+					return "家财险";
+					break
+				case 'yw':
+					 return "意外险";
+					 break
+				case 'zr':
+					 return "责任险";
+					 break
+				case 'zj':
+					 return "重大疾病保险";
+					 break
+				case 'cf':
+					 return "车辆相关服务";
+					 break
+				default:
+					break;
+			}
 		}
+		
+		(function() {
+			r();
+		})();
 	</script>
-	
 </body>
 </html>

@@ -20,7 +20,9 @@ import org.grouplens.lenskit.data.text.TextEventDAO;
 import org.grouplens.lenskit.knn.item.ItemItemScorer;
 import org.grouplens.lenskit.scored.ScoredId;
 import org.grouplens.lenskit.transform.normalize.BaselineSubtractingUserVectorNormalizer;
+import org.grouplens.lenskit.transform.normalize.MeanCenteringVectorNormalizer;
 import org.grouplens.lenskit.transform.normalize.UserVectorNormalizer;
+import org.grouplens.lenskit.transform.normalize.VectorNormalizer;
 
 
 public class lenskitTest {
@@ -35,11 +37,12 @@ public class lenskitTest {
 		// Second, use the item mean rating as the base for user means
 		config.bind(UserMeanBaseline.class, ItemScorer.class).to(ItemMeanRatingItemScorer.class);
 		// and normalize ratings by baseline prior to computing similarities
-		config.bind(UserVectorNormalizer.class).to(BaselineSubtractingUserVectorNormalizer.class);
+		config.bind(VectorNormalizer.class).to(MeanCenteringVectorNormalizer.class);
+		//MeanCenteringVectorNormalizer
 		
 		//config.bind(EventDAO.class).to(new SimpleFileRatingDAO(new File("C:\\Users\\AYOU\\Desktop\\ratings.csv"), ","));
 		
-		config.bind(EventDAO.class).to(TextEventDAO.ratings(new File("C:\\Users\\AYOU\\Desktop\\p-p.csv"), ","));
+		config.bind(EventDAO.class).to(TextEventDAO.ratings(new File("C:\\Users\\AYOU\\Desktop\\p-x.csv"), ","));
 		
 		//config.bind(EventDAO.class).to(TextEventDAO.ratings(new File("F:\\12.csv"), ""));
 		
@@ -51,13 +54,13 @@ public class lenskitTest {
 		}
 		ItemRecommender irec = rec.getItemRecommender();
 		
-		List<ScoredId> recommendations = irec.recommend(53959, 10);
-		List<ScoredId> r = irec.recommend(53959,20);
-		System.err.println(r);
+		List<ScoredId> recommendations = irec.recommend(53959);
+		//List<ScoredId> r = irec.recommend(53959,20);
+		//System.err.println(r);
 		System.err.println(recommendations);
 		
-		RatingPredictor pred = rec.getRatingPredictor();
-		double score = pred.predict(53959, 26);
-		System.err.println(score);
+		//RatingPredictor pred = rec.getRatingPredictor();
+		//double score = pred.predict(53959, 26);
+		//System.err.println(score);
 	}
 }

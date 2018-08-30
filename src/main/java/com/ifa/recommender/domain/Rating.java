@@ -23,21 +23,25 @@ public class Rating {
 		this.zr++;
 	}
 	public void ywReduce() {
-		this.yw--;
+		if (this.yw > 0)
+			this.yw--;
 	}
 	public void jcReduce() {
-		this.jc--;
+		if (this.jc > 0)
+			this.jc--;
 	}
 	public void cfReduce() {
-		this.cf--;
+		if (this.cf > 0)
+			this.cf--;
 	}
 	public void zjReduce() {
-		this.zj--;
+		if (this.zj > 0)
+			this.zj--;
 	}
 	public void zrReduce() {
-		this.zr--;
+		if (this.zr > 0)
+			this.zr--;
 	}
-	
 	public int getYw() {
 		return yw;
 	}
