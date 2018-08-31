@@ -14,9 +14,11 @@ public class Rater {
 		if (info.getVtype2().contains("个人")) {
 			r.jcAdd();
 			r.ywAdd();
+			r.setZr(0);
 		} else if (info.getVtype2().contains("企业") || info.getVtype2().contains("机关")) {
 			r.cfAdd();r.cfAdd();r.cfAdd();
-			r.setZj(0);
+			r.setZr(4);
+			r.setZj(1);
 		}
 		// age
 		int age = Integer.parseInt(info.getAge());
@@ -61,14 +63,20 @@ public class Rater {
 			r.setYw(4);
 		}
 		if (info.getVtype().contains("挂车") || info.getVtype().contains("摩托") || info.getVtype().contains("拖拉")) {
-			r.cfReduce();r.cfReduce();
 			r.setCf(1);
+			r.ywReduce();
+			if (info.getVtype().contains("挂车")&&(info.getVtype2().contains("企业") || info.getVtype2().contains("机关"))) {
+				r.zrAdd();
+				r.setZj(1);
+				r.cfAdd();
+			}
 		} else if (info.getVtype().contains("非营业")) {
 			r.zrAdd();
 			r.ywAdd();
 		}else {
-			r.zrAdd();r.zrAdd();
-			r.ywAdd();
+			if (info.getVtype2().contains("个人")) {
+				r.setZr(1);
+			}
 			r.cfAdd();
 		}
 		return r;

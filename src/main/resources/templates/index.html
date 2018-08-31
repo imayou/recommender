@@ -70,11 +70,24 @@
 			<hr class="mb-4">
 			<div class="row form-horizontal">
 				<div class="col-md-7">
-					<div id="container" style="height: 400px"></div>
+					<div id="container" style="height: 600px"></div>
 				</div>
 				<div class="col-md-5">
 					<ol class="list-unstyled mb-0" id="re">
-		              <li><a href="#">March 2014</a></li>
+		              <li><a href="#">February 2014</a><ul class=" mb-0" id="re">
+		              <li><a href="#"></a></li>
+		              <li><a href="#">a 2014</a></li>
+		              <li><a href="#">b 2014</a></li>
+		              <li><a href="#">c 2013</a></li>
+		              <li><a href="#">d 2013</a></li>
+		              <li><a href="#">e 2013</a></li>
+		              <li><a href="#">f 2013</a></li>
+		              <li><a href="#">g 2013</a></li>
+		              <li><a href="#">h 2013</a></li>
+		              <li><a href="#">i 2013</a></li>
+		              <li><a href="#">j 2013</a></li>
+		              <li><a href="#">k 2013</a></li>
+		            </ul></li>
 		              <li><a href="#">February 2014</a></li>
 		              <li><a href="#">January 2014</a></li>
 		              <li><a href="#">December 2013</a></li>
@@ -177,36 +190,164 @@
 				$('#re').html("");
 				for (var i = 0; i < sortedObjKeys.length; i++) {
 					//console.log(sortedObjKeys[i]+"--"+data[sortedObjKeys[i]]);
-					$('#re').append("<li><a href='#'>"+getv(sortedObjKeys[i])+"("+data[sortedObjKeys[i]]+")"+"</a></li>");
+					//$('#re').append("<li><a href='#'>"+getv(sortedObjKeys[i])+"("+data[sortedObjKeys[i]]+")"+"</a></li>");
+					var r = getv(sortedObjKeys[i],data);
+					console.log(r);					
+					$('#re').append(r);
 					
 				}
 			});
 		};
-		function getv(key){
+		var con = {
+				jc:{
+					1:"房屋	20-2000万元",
+					2:"房屋装修	5-200万元",
+					3:"室内财产	2-100万元",
+					4:"室内盗抢保障	2-20万元	",
+					5:"水暖管爆裂损失	1-20万元	",
+					6:"家用电器用电安全	1-20万元",
+					7:"居家责任	1-30万元	",
+					8:"雇主财产损失	1-20万元",
+					9:"家养宠物责任	0.2-1万元"
+				},
+				yw:{
+					1:'人身意外-个人',
+					2:'人身意外-家庭',
+					3:'交通意外-个人',
+					4:'交通意外-家庭'
+				},
+				zr:{
+					1:'工伤及职业病身故/伤残	 10万/20万',
+					2:'医疗费用报销1.5万/3万',
+					3:'误工津贴 50元/天',
+					4:'扩展非工作期间意外身故伤残（可选） 10万/20万'
+				},
+				zj:{
+					1:'成人重大疾病保险 （大病保险）',
+					2:'儿童·综合医疗保险',
+					3:'中老年人·综合医疗保险'
+				},
+				cf:{
+					1:'洗车',
+					2:'打蜡',
+					3:'机油',
+					4:'三滤',
+					5:'防冻液'
+				}
+			}
+		/**
+		 * 脑残推荐
+		 *
+		 */
+		function getv(key, data){
+			var vtype = $("#vtype").find("option:selected").text();
+			var vtype2 = $("#vtype2").find("option:selected").text();
+			var age = $("#age").val();
+			var year = $("#year").val();
+			var address = $("#address").val();
+			var r = "";
 			switch(key){
 				case 'jc':
-					return "家财险";
-					break
+					var str = "家财险";
+					var jcs=[1,2,3,4,5,6,7,8,9];
+					if(age>=18&&age<23){
+						jcs=[9,4,3,5,6,7,1,2,8];
+					}else if(age>=23&&age<=45){
+						jcs=[6,7,4,3,5,1,2,9,8];
+					}else if(age>45&&age<60){
+						jcs=[6,1,3,4,5,8,9,2,7];
+					}else if(age>=60){
+						jcs=[9,7,8,6,2,4,1,3,5];
+					}
+					var jcsStr="<ul class='mb-0' id='re'>";
+					for(var i=0;i<jcs.length;i++){
+						jcsStr+="<li><a href='#'>"+con.jc[jcs[i]]+"</a></li>";
+					}
+					jcsStr = jcsStr+"<ul>";
+					r = "<li><a href='#'>"+str+"("+data[key]+")"+"</a>"+jcsStr+"</li>"
+					//r = "<li><a href='#'>"+str+"("+data['jc']+")"+"</a><ul class='mb-0' id='re'><li><a href='#'>房屋</a></li><li><a href='#'>房屋装修</a></li><li><a href='#'>室内财产</a></li></ul></li>";
+					break;
 				case 'yw':
-					 return "意外险";
-					 break
+					var str = "意外险";
+					var yws = [1,2,3,4];
+					if(age>=18&&age<23){
+						yws=[1,3];
+					}else if(age>=23&&age<=45){
+						yws=[2,4];
+					}else if(age>45&&age<60){
+						yws=[2,4,1,3];
+					}else if(age>=60){
+						yws=[1,3,2,4];
+					}
+					var ywsStr="<ul class='mb-0' id='re'>";
+					for(var i=0;i<yws.length;i++){
+						ywsStr+="<li><a href='#'>"+con.yw[yws[i]]+"</a></li>";
+					}
+					ywsStr = ywsStr+"<ul>";
+					r = "<li><a href='#'>"+str+"("+data[key]+")"+"</a>"+ywsStr+"</li>"
+					//r = "<li><a href='#'>"+str+"("+data[key]+")"+"</a><ul class='mb-0' id='re'><li><a href='#'>旅游</a></li><li><a href='#'>交通</a></li></ul></li>"
+					break
 				case 'zr':
-					 return "责任险";
-					 break
+					var str= "责任险";
+					var zrs = [1,2,3,4];
+					if(year == 0){
+						zrs=[4,3,1,2];
+					}else if(year> 0&&year <3){
+						zrs=[2,1,4,3];
+					}else if(year>= 3&&year <10){
+						zrs=[1,3,2,4];
+					}
+					var zrsStr="<ul class='mb-0' id='re'>";
+					for(var i=0;i<zrs.length;i++){
+						zrsStr+="<li><a href='#'>"+con.zr[zrs[i]]+"</a></li>";
+					}
+					zrsStr = zrsStr+"<ul>";
+					r = "<li><a href='#'>"+str+"("+data[key]+")"+"</a>"+zrsStr+"</li>"
+					//r = "<li><a href='#'>"+str+"("+data[key]+")"+"</a><ul class='mb-0' id='re'><li><a href='#'>公众责任保险</a></li><li><a href='#'>第三者责任险</a></li><li><a href='#'>产品责任保险</a></li><li><a href='#'>雇主责任保险</a></li><li><a href='#'>职业责任保险</a></li><ul></li>"
+					break
 				case 'zj':
-					 return "重大疾病保险";
-					 break
+					var str= "重大疾病保险";
+					var zjs = [1,2,3];
+					if(age>=18&&age<23){
+						zjs = [1,2,3];
+					}else if(age>=23&&age<=45){
+						zjs = [2,1,3];
+					}else if(age>45){
+						zjs = [3,2,1];
+					}
+					var zjsStr="<ul class='mb-0' id='re'>";
+					for(var i=0;i<zjs.length;i++){
+						zjsStr+="<li><a href='#'>"+con.zj[zjs[i]]+"</a></li>";
+					}
+					zjsStr = zjsStr+"<ul>";
+					r = "<li><a href='#'>"+str+"("+data[key]+")"+"</a>"+zjsStr+"</li>"
+					break
 				case 'cf':
-					 return "车辆相关服务";
-					 break
+					var str = "车辆相关服务";
+					var cfs = [1,2,3,4,5];
+					if(year == 0){
+						cfs=[2,3,1,5,4];
+					}else if(year> 0&&year <3){
+						cfs=[3,1,2,4,5];
+					}else if(year>= 3&&year <10){
+						cfs=[3,4,5,1,2];
+					}
+					var cfsStr = "<ul class='mb-0' id='re'>";
+					for(var i=0;i<cfs.length;i++){
+						cfsStr+="<li><a href='#'>"+con.cf[cfs[i]]+"</a></li>";
+					}
+					cfsStr = cfsStr+ "<ul>";
+					r = "<li><a href='#'>"+str+"("+data[key]+")"+"</a>"+cfsStr+"</li>"
+					break
 				default:
 					break;
 			}
+			return r;
 		}
-		
 		(function() {
 			r();
 		})();
 	</script>
+	
 </body>
 </html>
